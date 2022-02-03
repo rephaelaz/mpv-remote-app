@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Mpv Remote</string>
+    <string name="title">Title</string>
+    <string name="chapter">Chapter</string>
+    <string name="volume">Volume</string>
+    <string name="audio">Audio</string>
+    <string name="subtitles">Subtitles</string>
+    <string name="previous">Previous</string>
+    <string name="rewind">Rewind</string>
+    <string name="play">Play</string>
+    <string name="fast_forward">Fast-Forward</string>
+    <string name="next">Next</string>
+    <string name="disconnected">Disconnected</string>
+</resources>

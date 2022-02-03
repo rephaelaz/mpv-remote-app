@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintBottom_toTopOf="@+id/text_chapter"
+        app:layout_constraintStart_toStartOf="@+id/text_chapter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/text_chapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/chapter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/progress_bar"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_play"
+        app:layout_constraintEnd_toEndOf="@+id/btn_next"
+        app:layout_constraintStart_toStartOf="@+id/btn_prev"
+        app:layout_constraintTop_toBottomOf="@+id/text_chapter" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/previous"
+        android:onClick="onPrev"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_rwd"
+        app:layout_constraintEnd_toStartOf="@+id/btn_rwd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_rwd"
+        app:srcCompat="@drawable/ic_prev"
+        tools:ignore="ImageContrastCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_rwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/rewind"
+        android:onClick="onRwd"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_play"
+        app:layout_constraintEnd_toStartOf="@+id/btn_play"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_prev"
+        app:layout_constraintTop_toTopOf="@+id/btn_play"
+        app:srcCompat="@drawable/ic_rwd" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/play"
+        android:onClick="onPlay"
+        app:layout_constraintBottom_toTopOf="@+id/img_volume"
+        app:layout_constraintEnd_toStartOf="@+id/btn_ffw"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_rwd"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar"
+        app:srcCompat="@drawable/ic_play"
+        tools:ignore="ImageContrastCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_ffw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/fast_forward"
+        android:onClick="onFfw"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_play"
+        app:layout_constraintEnd_toStartOf="@+id/btn_next"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_play"
+        app:layout_constraintTop_toTopOf="@+id/btn_play"
+        app:srcCompat="@drawable/ic_ffw" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/next"
+        android:onClick="onNext"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_ffw"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_ffw"
+        app:layout_constraintTop_toTopOf="@+id/btn_ffw"
+        app:srcCompat="@drawable/ic_next"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/img_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/volume"
+        app:layout_constraintBottom_toTopOf="@+id/list_audio"
+        app:layout_constraintStart_toStartOf="@+id/btn_prev"
+        app:layout_constraintTop_toBottomOf="@+id/btn_play"
+        app:srcCompat="@drawable/ic_volume" />
+
+    <SeekBar
+        android:id="@+id/volume_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_volume"
+        app:layout_constraintEnd_toEndOf="@+id/btn_next"
+        app:layout_constraintStart_toEndOf="@+id/img_volume"
+        app:layout_constraintTop_toTopOf="@+id/img_volume" />
+
+    <ImageView
+        android:id="@+id/img_audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/audio"
+        app:layout_constraintBottom_toBottomOf="@+id/list_audio"
+        app:layout_constraintStart_toStartOf="@+id/img_volume"
+        app:layout_constraintTop_toTopOf="@+id/list_audio"
+        app:srcCompat="@drawable/ic_audio" />
+
+    <Spinner
+        android:id="@+id/list_audio"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/list_subtitles"
+        app:layout_constraintEnd_toEndOf="@+id/volume_bar"
+        app:layout_constraintStart_toEndOf="@+id/img_audio"
+        app:layout_constraintTop_toBottomOf="@+id/img_volume" />
+
+    <ImageView
+        android:id="@+id/img_subtitles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/subtitles"
+        app:layout_constraintBottom_toBottomOf="@+id/list_subtitles"
+        app:layout_constraintStart_toStartOf="@+id/img_audio"
+        app:layout_constraintTop_toTopOf="@+id/list_subtitles"
+        app:srcCompat="@drawable/ic_subtitles" />
+
+    <Spinner
+        android:id="@+id/list_subtitles"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_status"
+        app:layout_constraintEnd_toEndOf="@+id/list_audio"
+        app:layout_constraintStart_toEndOf="@+id/img_subtitles"
+        app:layout_constraintTop_toBottomOf="@+id/list_audio" />
+
+    <TextView
+        android:id="@+id/text_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/disconnected"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_subtitles" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
