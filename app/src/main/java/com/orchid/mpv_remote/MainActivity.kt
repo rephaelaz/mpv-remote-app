@@ -58,27 +58,37 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onPlay(view: View) {
-        val thread = SenderThread(this, "play")
-        thread.start()
+        if (connected) {
+            val thread = SenderThread(this, "play")
+            thread.start()
+        }
     }
 
     fun onFfw(view: View) {
-        val thread = SenderThread(this, "ffw")
-        thread.start()
+        if (connected) {
+            val thread = SenderThread(this, "ffw")
+            thread.start()
+        }
     }
 
     fun onRwd(view: View) {
-        val thread = SenderThread(this, "rwd")
-        thread.start()
+        if (connected) {
+            val thread = SenderThread(this, "rwd")
+            thread.start()
+        }
     }
 
     fun onNext(view: View) {
-        val thread = SenderThread(this, "next")
-        thread.start()
+        if (connected) {
+            val thread = SenderThread(this, "next")
+            thread.start()
+        }
     }
 
     fun onPrev(view: View) {
-        val thread = SenderThread(this, "prev")
-        thread.start()
+        if (connected) {
+            val thread = SenderThread(this, "prev")
+            thread.start()
+        }
     }
 }
