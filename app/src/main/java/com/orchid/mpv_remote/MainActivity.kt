@@ -8,12 +8,14 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import org.json.JSONObject
 import java.net.DatagramPacket
 import java.net.Socket
 
 
 class MainActivity : AppCompatActivity() {
     private var listener: ListenerThread? = null
+    private var receiver: ReceiverThread? = null
     private var connected: Boolean = false
 
     lateinit var socket: Socket
@@ -42,8 +44,10 @@ class MainActivity : AppCompatActivity() {
         }
         if (connected) {
             socket.close()
+            receiver!!.join()
             connected = false
         }
+        findViewById<TextView>(R.id.text_title).text = getString(R.string.title)
         findViewById<TextView>(R.id.text_status).text = getString(R.string.disconnected)
     }
 
@@ -52,8 +56,20 @@ class MainActivity : AppCompatActivity() {
         val hostname = packet.data.decodeToString(8, packet.data.size).trim(Char(0))
         socket = Socket(ip, Global.PORT)
         connected = true
+        receiver = ReceiverThread(this)
+        receiver!!.start()
+        val thread = SenderThread(this, "title")
+        thread.start()
         runOnUiThread {
             findViewById<TextView>(R.id.text_status).text = hostname
+        }
+    }
+
+    fun onReceiverReceive(message: JSONObject) {
+        if (message.has("title")) {
+            runOnUiThread {
+                findViewById<TextView>(R.id.text_title).text = message.getString("title")
+            }
         }
     }
 

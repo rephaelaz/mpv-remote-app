@@ -20,7 +20,6 @@ class ListenerThread(private val context: MainActivity) : Thread() {
             try {
                 socket.receive(packet)
             } catch (e: SocketException) {
-                // Expected if
                 if (e.message.equals("Socket closed")) {
                     return
                 }
